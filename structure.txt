@@ -1,0 +1,64 @@
+chatbot-project/
+│── backend/                         # Backend API
+│   ├── app/                         # Main application directory
+│   │   ├── __init__.py              # Initializes the app (for Python projects)
+│   │   ├── main.py                   # Main application file (Flask) or index.js (Express)
+│   │   ├── routes/                   # API endpoints
+│   │   │   ├── chatbot.py            # API for handling chatbot interactions (Flask)
+│   │   │   ├── user.py               # API for user authentication (Flask)
+│   │   │   ├── chatbotRoutes.js      # API routes for chatbot (Express)
+│   │   │   ├── userRoutes.js         # API routes for authentication (Express)
+│   │   ├── services/                 # Business logic
+│   │   │   ├── openai_service.py      # Functions for interacting with OpenAI API
+│   │   │   ├── database_service.py    # Functions for handling database queries
+│   │   ├── models/                   # Database models
+│   │   │   ├── user.py               # User model (Flask)
+│   │   │   ├── conversation.py        # Conversation model (Flask)
+│   │   │   ├── User.js               # User model (Express + Sequelize)
+│   │   │   ├── Conversation.js        # Conversation model (Express + Sequelize)
+│   │   ├── config/                   # Configurations
+│   │   │   ├── config.py             # Flask configuration
+│   │   │   ├── database.py           # PostgreSQL connection setup (Flask)
+│   │   │   ├── config.js             # Express configuration
+│   │   │   ├── database.js           # PostgreSQL connection setup (Express)
+│   │   ├── requirements.txt          # Python dependencies (Flask)
+│   │   ├── package.json              # Node.js dependencies (Express)
+│   ├── migrations/                   # Database migrations (Flask-Alchemy / Sequelize)
+│   ├── tests/                        # Unit & integration tests
+│   ├── .env                          # Environment variables
+│   ├── README.md                      # Backend documentation
+│
+│── frontend/                          # Frontend React app
+│   ├── public/                        # Static assets
+│   │   ├── index.html                  # Main HTML file
+│   ├── src/                           # Main source code
+│   │   ├── components/                 # Reusable UI components
+│   │   │   ├── Chatbox.js              # Chat UI
+│   │   │   ├── Message.js              # Individual message component
+│   │   ├── pages/                      # Pages
+│   │   │   ├── Chat.js                 # Chat page
+│   │   │   ├── Home.js                 # Homepage
+│   │   ├── services/                   # API calls to backend
+│   │   │   ├── chatbotService.js       # Chatbot API service
+│   │   │   ├── authService.js          # User authentication service
+│   │   ├── App.js                      # Main React component
+│   │   ├── index.js                    # Entry point
+│   ├── package.json                    # Frontend dependencies
+│   ├── .env                            # Frontend environment variables
+│   ├── README.md                        # Frontend documentation
+│
+│── database/                          # Database setup scripts
+│   ├── init_db.sql                     # SQL script for creating tables
+│   ├── seed_data.sql                    # SQL script for seeding initial data
+│   ├── migrations/                      # Database migrations
+│
+│── docker/                             # Docker setup (optional)
+│   ├── Dockerfile                      # Backend Dockerfile
+│   ├── docker-compose.yml               # Docker Compose for PostgreSQL + App
+│
+│── scripts/                            # Utility scripts
+│   ├── start.sh                        # Shell script to start the project
+│   ├── deploy.sh                       # Deployment script
+│
+│── .gitignore                           # Git ignore file
+│── README.md                            # Project documentation
