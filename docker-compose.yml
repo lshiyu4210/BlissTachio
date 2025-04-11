@@ -1,4 +1,17 @@
+version: '3.9'
+
 services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blisstachio
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   app:
     build:
       context: .
@@ -7,5 +20,10 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
+    depends_on:
+      - db
     env_file:
       - .env
+
+volumes:
+  postgres_data:

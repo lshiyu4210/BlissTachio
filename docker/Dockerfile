@@ -5,7 +5,7 @@ FROM python:3.12.3
 WORKDIR /app
 
 # Copy all files to the container
-COPY . /app
+COPY . .
 
 # Install dependencies
 RUN pip install --upgrade pip
