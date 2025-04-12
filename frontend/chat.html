@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><title>Chat</title></head>
+<body>
+  <h1>BlissTachio Chat</h1>
+  <div>
+    <input id="query" placeholder="Ask something..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <div id="chat-response" style="margin-top: 20px;"></div>
+  <br><button onclick="logout()">Logout</button>
+
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/frontend/login.html";  // redirect if not logged in
+    }
+
+    async function sendMessage() {
+      const query = document.getElementById("query").value;
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        body: JSON.stringify({ message: query })
+      });
+      const data = await res.json();
+      const chatBox = document.getElementById("chat-response");
+      chatBox.innerHTML += `<p><strong>You:</strong> ${query}</p>`;
+      chatBox.innerHTML += `<p><strong>BlissTachio:</strong> ${data.reply || data.detail}</p>`;
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      window.location.href = "/frontend/login.html";
+    }
+  </script>
+</body>
+</html>

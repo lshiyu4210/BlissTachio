@@ -1,10 +1,17 @@
 """BlissTachio REST API"""
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from contextlib import asynccontextmanager
 from backend.api.main import home, chat
 from backend.api.register import register_user, login_user
+from backend.api.database import init_db
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()  # create all tables before the app starts
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 # Mount frontend static files
 app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")

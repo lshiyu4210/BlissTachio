@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Login</title></head>
+<body>
+  <h1>Login</h1>
+  <input id="login-email" type="email" placeholder="Email" />
+  <input id="login-password" type="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <div id="login-msg"></div>
+  <br><a href="/frontend/register.html">Need an account? Register</a>
+
+  <script>
+    async function login() {
+      const res = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: document.getElementById("login-email").value,
+          password: document.getElementById("login-password").value
+        })
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        localStorage.setItem("token", data.access_token);
+        window.location.href = "/frontend/chat.html";
+      } else {
+        document.getElementById("login-msg").innerText = data.detail || "[Login failed]";
+      }
+    }
+  </script>
+</body>
+</html>
